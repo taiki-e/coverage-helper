@@ -1,0 +1,21 @@
+[package]
+name = "coverage-helper"
+version = "0.1.0" #publish:version
+edition = "2018"
+rust-version = "1.38"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/taiki-e/coverage-helper"
+keywords = ["macros", "attribute", "coverage", "testing"]
+categories = ["development-tools", "development-tools::testing"]
+exclude = ["/.*", "/tools"]
+description = """
+Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
+"""
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[workspace]
+
+[lib]
+proc-macro = true
