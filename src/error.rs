@@ -2,8 +2,6 @@ use std::iter::FromIterator;
 
 use proc_macro::{Delimiter, Group, Ident, Literal, Punct, Spacing, Span, TokenStream, TokenTree};
 
-// TODO: remove this #[allow(..)] once https://github.com/rust-lang/rust/pull/97032 backported to beta
-#[allow(unknown_lints, unused_macro_rules)]
 macro_rules! format_err {
     ($span:expr, $msg:expr $(,)*) => {
         crate::error::Error::new($span, String::from($msg))
