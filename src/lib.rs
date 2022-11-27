@@ -59,7 +59,9 @@ mod error;
 #[macro_use]
 mod quote;
 
-use proc_macro::{Span, TokenStream};
+use std::iter;
+
+use proc_macro::{Span, TokenStream, TokenTree};
 
 #[proc_macro_attribute]
 pub fn test(args: TokenStream, input: TokenStream) -> TokenStream {
@@ -72,5 +74,34 @@ pub fn test(args: TokenStream, input: TokenStream) -> TokenStream {
         #[::core::prelude::v1::test]
     };
     out.extend(input);
+    out
+}
+
+#[doc(hidden)]
+#[proc_macro_attribute]
+pub fn __doc_crate_attr(args: TokenStream, input: TokenStream) -> TokenStream {
+    if !args.is_empty() {
+        return format_err!(
+            Span::call_site(),
+            "attribute must be of the form `#![__doc_crate_attr]`"
+        )
+        .into_compile_error();
+    }
+    let mut input = input.into_iter().peekable();
+    let mut out = TokenStream::new();
+    while let Some(t) = input.next() {
+        if let TokenTree::Ident(i) = &t {
+            if i.to_string() == "fn" {
+                if let Some(TokenTree::Ident(i)) = input.peek() {
+                    if i.to_string() == "main" {
+                        out.extend(quote! {
+                            #[cfg_attr(coverage_nightly, no_coverage)]
+                        });
+                    }
+                }
+            }
+        }
+        out.extend(iter::once(t));
+    }
     out
 }
