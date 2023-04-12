@@ -6,6 +6,7 @@
 [![rustc](https://img.shields.io/badge/rustc-1.38+-blue?style=flat-square&logo=rust)](https://www.rust-lang.org)
 [![build status](https://img.shields.io/github/actions/workflow/status/taiki-e/coverage-helper/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/taiki-e/coverage-helper/actions)
 
+<!-- tidy:crate-doc:start -->
 Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
 
 ## Usage
@@ -43,6 +44,8 @@ fn my_test() {
     // ...
 }
 ```
+
+<!-- tidy:crate-doc:end -->
 
 ## License
 

@@ -1,4 +1,5 @@
 /*!
+<!-- tidy:crate-doc:start -->
 Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
 
 ## Usage
@@ -36,6 +37,8 @@ fn my_test() {
     // ...
 }
 ```
+
+<!-- tidy:crate-doc:end -->
 */
 
 #![doc(test(
