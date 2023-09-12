@@ -64,9 +64,15 @@ jobs:
       - run: rustup toolchain add nightly --no-self-update
       - uses: taiki-e/install-action@cargo-hack
       - uses: taiki-e/install-action@cargo-minimal-versions
+      - uses: taiki-e/install-action@cargo-llvm-cov
       - run: cargo test --workspace --all-features
       - run: cargo hack build --workspace --no-private --feature-powerset --no-dev-deps
       - run: cargo minimal-versions build --workspace --no-private --all-features
+      - run: cargo llvm-cov --text --fail-under-lines 80
+        working-directory: tests/basic
+      - run: cargo llvm-cov --text --fail-under-lines 100
+        working-directory: tests/basic
+        if: startsWith(matrix.rust, 'nightly')
 
   miri:
     runs-on: ubuntu-latest

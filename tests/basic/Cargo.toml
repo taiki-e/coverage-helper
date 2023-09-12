@@ -1,0 +1,10 @@
+[package]
+name = "basic"
+version = "0.0.0"
+edition = "2018"
+publish = false
+
+[workspace]
+
+[dependencies]
+coverage-helper = { path = "../.." }
