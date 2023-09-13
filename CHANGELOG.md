@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Prepare for [renaming of `#[no_coverage]` in future nightly](https://github.com/rust-lang/rust/pull/114656). ([#3](https://github.com/taiki-e/coverage-helper/pull/3))
+
 ## [0.1.0] - 2022-05-29
 
 Initial release
