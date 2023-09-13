@@ -2,6 +2,9 @@
 <!-- tidy:crate-doc:start -->
 Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
 
+**Note:** coverage-helper 0.1 supports `#[no_coverage]`.
+See coverage-helper 0.2 or later for versions that support `#[coverage(off)]`.
+
 ## Usage
 
 Add this to your `Cargo.toml`:
@@ -70,10 +73,11 @@ pub fn test(args: TokenStream, input: TokenStream) -> TokenStream {
         return format_err!(Span::call_site(), "attribute must be of the form `#[test]`")
             .into_compile_error();
     }
-    let mut out = quote! {
-        #[cfg_attr(coverage_nightly, no_coverage)]
-        #[::core::prelude::v1::test]
-    };
+    let mut out = TokenStream::new();
+    if cfg!(coverage_helper_has_no_coverage) {
+        out.extend(quote! { #[cfg_attr(coverage_nightly, no_coverage)] });
+    }
+    out.extend(quote! { #[::core::prelude::v1::test] });
     out.extend(input);
     out
 }
