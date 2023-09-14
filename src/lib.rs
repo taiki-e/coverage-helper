@@ -2,8 +2,8 @@
 <!-- tidy:crate-doc:start -->
 Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
 
-**Note:** coverage-helper 0.1 supports `#[no_coverage]`.
-See coverage-helper 0.2 or later for versions that support `#[coverage(off)]`.
+**Note:** coverage-helper 0.2 supports `#[coverage(off)]`.
+See coverage-helper 0.1 for versions that support `#[no_coverage]`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ coverage-helper = "0.1"
 And add this to your crate root (`lib.rs` or `main.rs`):
 
 ```rust
-#![cfg_attr(coverage_nightly, feature(no_coverage))]
+#![cfg_attr(coverage_nightly, feature(coverage_attribute))]
 ```
 
 ## Examples
@@ -34,7 +34,7 @@ fn my_test() {
 Expanded to:
 
 ```rust
-#[cfg_attr(coverage_nightly, no_coverage)]
+#[cfg_attr(coverage_nightly, coverage(off))]
 #[::core::prelude::v1::test]
 fn my_test() {
     // ...
@@ -74,8 +74,8 @@ pub fn test(args: TokenStream, input: TokenStream) -> TokenStream {
             .into_compile_error();
     }
     let mut out = TokenStream::new();
-    if cfg!(coverage_helper_has_no_coverage) {
-        out.extend(quote! { #[cfg_attr(coverage_nightly, no_coverage)] });
+    if cfg!(coverage_helper_has_coverage_attribute) {
+        out.extend(quote! { #[cfg_attr(coverage_nightly, coverage(off))] });
     }
     out.extend(quote! { #[::core::prelude::v1::test] });
     out.extend(input);

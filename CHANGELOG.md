@@ -10,6 +10,11 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+**Note:** coverage-helper 0.2 supports `#[coverage(off)]`.
+See coverage-helper 0.1 for versions that support `#[no_coverage]`.
+
+- Use [`#[coverage(off)]`](https://github.com/rust-lang/rust/pull/114656) instead of `#[no_coverage]`. ([#4](https://github.com/taiki-e/coverage-helper/pull/4))
+
 ## [0.1.1] - 2023-09-13
 
 - Prepare for [renaming of `#[no_coverage]` in future nightly](https://github.com/rust-lang/rust/pull/114656). ([#3](https://github.com/taiki-e/coverage-helper/pull/3))
