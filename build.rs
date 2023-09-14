@@ -5,8 +5,8 @@ use std::{
 };
 
 fn main() {
-    if probe_feature("no_coverage").unwrap_or(false) {
-        println!("cargo:rustc-cfg=coverage_helper_has_no_coverage")
+    if probe_feature("coverage_attribute").unwrap_or(false) {
+        println!("cargo:rustc-cfg=coverage_helper_has_coverage_attribute")
     }
 }
 
@@ -42,7 +42,7 @@ fn probe_feature(feature_name: &str) -> Option<bool> {
     let mut child = cmd.spawn().ok()?;
     let mut stdin = child.stdin.take().expect("rustc stdin");
 
-    // There is no need to respect TARGET since no_coverage is platform-independent,
+    // There is no need to respect TARGET since #[coverage] is platform-independent,
     // just check for host. And host always has std.
     stdin
         .write_all(

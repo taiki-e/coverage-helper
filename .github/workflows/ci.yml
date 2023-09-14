@@ -70,9 +70,10 @@ jobs:
       - run: cargo minimal-versions build --workspace --no-private --all-features
       - run: cargo llvm-cov --text --fail-under-lines 80
         working-directory: tests/basic
-      - run: cargo llvm-cov --text --fail-under-lines 100
-        working-directory: tests/basic
-        if: startsWith(matrix.rust, 'nightly')
+      # TODO: https://github.com/rust-lang/rust/pull/114656 not yet released
+      # - run: cargo llvm-cov --text --fail-under-lines 100
+      #   working-directory: tests/basic
+      #   if: startsWith(matrix.rust, 'nightly')
 
   miri:
     runs-on: ubuntu-latest
