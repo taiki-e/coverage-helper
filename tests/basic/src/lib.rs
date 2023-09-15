@@ -1,4 +1,4 @@
-// #![cfg_attr(coverage_nightly, feature(coverage_attribute))] // TODO: https://github.com/rust-lang/rust/pull/114656 not yet released
+#![cfg_attr(coverage_nightly, feature(coverage_attribute))]
 #![allow(dead_code)]
 
 #[coverage_helper::test]
