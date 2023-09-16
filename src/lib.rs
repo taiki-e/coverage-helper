@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0 OR MIT
+
 /*!
 <!-- tidy:crate-doc:start -->
 Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
