@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
+// The rustc-cfg emitted by the build script are *not* public API.
+
+#![warn(rust_2018_idioms, single_use_lifetimes, clippy::pedantic)]
+
 use std::{
     env,
     io::Write,
@@ -8,7 +12,7 @@ use std::{
 
 fn main() {
     if probe_feature("coverage_attribute").unwrap_or(false) {
-        println!("cargo:rustc-cfg=coverage_helper_has_coverage_attribute")
+        println!("cargo:rustc-cfg=coverage_helper_has_coverage_attribute");
     }
 }
 
