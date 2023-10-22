@@ -67,7 +67,7 @@ jobs:
       - uses: taiki-e/install-action@cargo-llvm-cov
       - run: cargo test --workspace --all-features
       - run: cargo hack build --workspace --no-private --feature-powerset --no-dev-deps
-      - run: cargo minimal-versions build --workspace --no-private --all-features
+      - run: cargo minimal-versions build --workspace --no-private --detach-path-deps=skip-exact --all-features
       - run: cargo llvm-cov --text --fail-under-lines 80
         working-directory: tests/basic
       - run: cargo llvm-cov --text --fail-under-lines 100
