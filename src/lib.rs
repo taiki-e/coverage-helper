@@ -54,6 +54,7 @@ fn my_test() {
     )
 ))]
 #![forbid(unsafe_code)]
+#![allow(clippy::test_attr_in_doctest)]
 
 // older compilers require explicit `extern crate`.
 #[allow(unused_extern_crates)]
