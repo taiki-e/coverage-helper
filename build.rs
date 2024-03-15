@@ -41,6 +41,7 @@ fn probe_feature(feature_name: &str) -> Option<bool> {
         .arg(format!("coverage_helper_build_{}", feature_name))
         .arg("--crate-type=lib")
         .arg("--emit=metadata")
+        .arg("--cap-lints=allow")
         .arg("--out-dir")
         .arg(out_dir);
 
@@ -50,12 +51,7 @@ fn probe_feature(feature_name: &str) -> Option<bool> {
 
     // There is no need to respect TARGET since #[coverage] is platform-independent,
     // just check for host. And host always has std.
-    stdin
-        .write_all(
-            br"#![allow(stable_features)]
-#![feature(",
-        )
-        .ok()?;
+    stdin.write_all(br"#![feature(").ok()?;
     stdin.write_all(feature_name.as_bytes()).ok()?;
     stdin.write_all(br")]").ok()?;
 
