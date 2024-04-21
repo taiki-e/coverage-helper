@@ -5,6 +5,7 @@
 use std::{
     env,
     io::Write,
+    iter,
     process::{Command, Stdio},
 };
 
@@ -25,16 +26,22 @@ fn probe_feature(feature_name: &str) -> Option<bool> {
         return None;
     }
 
-    let rustc = env::var_os("RUSTC")?;
     let out_dir = env::var_os("OUT_DIR")?;
-
-    let mut cmd = if let Some(wrapper) = env::var_os("RUSTC_WRAPPER") {
-        let mut cmd = Command::new(wrapper);
-        cmd.arg(rustc);
-        cmd
-    } else {
-        Command::new(rustc)
-    };
+    let rustc = env::var_os("RUSTC")?;
+    let (rustc_wrapper, rustc_workspace_wrapper) =
+        if env::var_os("CARGO_ENCODED_RUSTFLAGS").is_some() {
+            (
+                env::var_os("RUSTC_WRAPPER").filter(|v| !v.is_empty()),
+                env::var_os("RUSTC_WORKSPACE_WRAPPER").filter(|v| !v.is_empty()),
+            )
+        } else {
+            // Cargo sets environment variables for wrappers correctly only since https://github.com/rust-lang/cargo/pull/9601.
+            (None, None)
+        };
+    let mut rustc =
+        rustc_wrapper.into_iter().chain(rustc_workspace_wrapper).chain(iter::once(rustc));
+    let mut cmd = Command::new(rustc.next().unwrap());
+    cmd.args(rustc);
     cmd.stderr(Stdio::null())
         .arg("--edition=2018")
         .arg("--crate-name")
