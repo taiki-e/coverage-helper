@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Respect `RUSTC_WORKSPACE_WRAPPER` when checking availability of `#[coverage(off)]`.
+
 ## [0.2.0] - 2023-09-14
 
 **Note:** coverage-helper 0.2 supports `#[coverage(off)]`.
