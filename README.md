@@ -24,7 +24,7 @@ coverage-helper = "0.1"
 And add this to your crate root (`lib.rs` or `main.rs`):
 
 ```rust
-#![cfg_attr(coverage_nightly, feature(coverage_attribute))]
+#![cfg_attr(all(coverage_nightly, test), feature(coverage_attribute))]
 ```
 
 ## Examples
@@ -41,7 +41,7 @@ fn my_test() {
 Expanded to:
 
 ```rust
-#[cfg_attr(coverage_nightly, coverage(off))]
+#[cfg_attr(all(coverage_nightly, test), coverage(off))]
 #[::core::prelude::v1::test]
 fn my_test() {
     // ...

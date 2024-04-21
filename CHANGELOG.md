@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Update documentation to recommend using `#![cfg_attr(all(coverage_nightly, test), feature(coverage_attribute))]` instead of `#![cfg_attr(coverage_nightly, feature(coverage_attribute))]`.
+
 ## [0.2.1] - 2024-04-21
 
 - Respect `RUSTC_WORKSPACE_WRAPPER` when checking availability of `#[coverage(off)]`.

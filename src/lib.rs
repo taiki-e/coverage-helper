@@ -19,7 +19,7 @@ coverage-helper = "0.1"
 And add this to your crate root (`lib.rs` or `main.rs`):
 
 ```rust
-#![cfg_attr(coverage_nightly, feature(coverage_attribute))]
+#![cfg_attr(all(coverage_nightly, test), feature(coverage_attribute))]
 ```
 
 ## Examples
@@ -36,7 +36,7 @@ fn my_test() {
 Expanded to:
 
 ```rust
-#[cfg_attr(coverage_nightly, coverage(off))]
+#[cfg_attr(all(coverage_nightly, test), coverage(off))]
 #[::core::prelude::v1::test]
 fn my_test() {
     // ...
@@ -76,7 +76,7 @@ pub fn test(args: TokenStream, input: TokenStream) -> TokenStream {
     }
     let mut out = TokenStream::new();
     if cfg!(coverage_helper_has_coverage_attribute) {
-        out.extend(quote! { #[cfg_attr(coverage_nightly, coverage(off))] });
+        out.extend(quote! { #[cfg_attr(all(coverage_nightly, test), coverage(off))] });
     }
     out.extend(quote! { #[::core::prelude::v1::test] });
     out.extend(input);
