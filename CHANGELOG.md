@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.1] - 2024-04-21
+
 - Respect `RUSTC_WORKSPACE_WRAPPER` when checking availability of `#[coverage(off)]`.
 
 ## [0.2.0] - 2023-09-14
@@ -27,7 +29,8 @@ See coverage-helper 0.1 for versions that support `#[no_coverage]`.
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/coverage-helper/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/taiki-e/coverage-helper/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/taiki-e/coverage-helper/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/taiki-e/coverage-helper/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/taiki-e/coverage-helper/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/taiki-e/coverage-helper/releases/tag/v0.1.0
