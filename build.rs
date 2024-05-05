@@ -11,6 +11,7 @@ use std::{
 
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rustc-check-cfg=cfg(coverage_helper_has_coverage_attribute,coverage_nightly)");
 
     if probe_feature("coverage_attribute").unwrap_or(false) {
         println!("cargo:rustc-cfg=coverage_helper_has_coverage_attribute");
