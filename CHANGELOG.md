@@ -12,6 +12,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.3] - 2024-12-18
+
 **Note: This crate is now deprecated in favor of the pattern that is [recommended in the cargo-llvm-cov documentation](https://github.com/taiki-e/cargo-llvm-cov?tab=readme-ov-file#exclude-code-from-coverage).**
 
 > If you want to ignore all `#[test]`-related code, you can use module-level `#[coverage(off)]` attribute:
@@ -51,7 +53,8 @@ See coverage-helper 0.1 for versions that support `#[no_coverage]`.
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/coverage-helper/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/taiki-e/coverage-helper/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/taiki-e/coverage-helper/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/taiki-e/coverage-helper/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/taiki-e/coverage-helper/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/taiki-e/coverage-helper/compare/v0.1.1...v0.2.0
