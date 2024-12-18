@@ -2,6 +2,25 @@
 
 /*!
 <!-- tidy:crate-doc:start -->
+
+**Note: This crate is now deprecated in favor of the pattern that is [recommended in the cargo-llvm-cov documentation](https://github.com/taiki-e/cargo-llvm-cov?tab=readme-ov-file#exclude-code-from-coverage).**
+
+> If you want to ignore all `#[test]`-related code, you can use module-level `#[coverage(off)]` attribute:
+>
+> ```rust
+> #[cfg(test)]
+> #[cfg_attr(coverage, coverage(off))]
+> mod tests {
+>     // ...
+> }
+> ```
+>
+> cargo-llvm-cov excludes code contained in the directory named `tests` from the report by default, so you can also use it instead of `#[coverage(off)]` attribute.
+
+`#[coverage(off)]` attribute has been stabilized in [rust-lang/rust#130766](https://github.com/rust-lang/rust/pull/130766) (will be included in Rust 1.85).
+
+---
+
 Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
 
 **Note:** coverage-helper 0.2 supports `#[coverage(off)]`.
@@ -13,13 +32,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dev-dependencies]
-coverage-helper = "0.1"
-```
-
-And add this to your crate root (`lib.rs` or `main.rs`):
-
-```rust
-#![cfg_attr(all(coverage_nightly, test), feature(coverage_attribute))]
+coverage-helper = "0.2"
 ```
 
 ## Examples
@@ -50,11 +63,11 @@ fn my_test() {
     no_crate_inject,
     attr(
         deny(warnings, rust_2018_idioms, single_use_lifetimes),
-        allow(dead_code, unused_variables)
+        allow(dead_code, unused_variables, deprecated)
     )
 ))]
 #![forbid(unsafe_code)]
-#![allow(clippy::test_attr_in_doctest)]
+#![allow(deprecated, clippy::test_attr_in_doctest)]
 
 // older compilers require explicit `extern crate`.
 #[allow(unused_extern_crates)]
@@ -68,6 +81,12 @@ mod quote;
 
 use proc_macro::{Span, TokenStream};
 
+#[deprecated(
+    since = "0.2.3",
+    note = "this crate is deprecated in favor of module-level #[coverage(off)] attribute; \
+            see <https://github.com/taiki-e/cargo-llvm-cov?tab=readme-ov-file#exclude-code-from-coverage> \
+            for more"
+)]
 #[proc_macro_attribute]
 pub fn test(args: TokenStream, input: TokenStream) -> TokenStream {
     if !args.is_empty() {

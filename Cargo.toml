@@ -9,11 +9,14 @@ keywords = ["macros", "attribute", "coverage", "testing"]
 categories = ["development-tools::testing"]
 exclude = ["/.*", "/tools"]
 description = """
-Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
+Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>. (deprecated)
 """
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
+
+[badges]
+maintenance = { status = "deprecated" }
 
 [lib]
 proc-macro = true

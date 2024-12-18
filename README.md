@@ -5,8 +5,28 @@
 [![license](https://img.shields.io/badge/license-Apache--2.0_OR_MIT-blue?style=flat-square)](#license)
 [![msrv](https://img.shields.io/badge/msrv-1.38-blue?style=flat-square&logo=rust)](https://www.rust-lang.org)
 [![github actions](https://img.shields.io/github/actions/workflow/status/taiki-e/coverage-helper/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/taiki-e/coverage-helper/actions)
+![maintenance-status](https://img.shields.io/badge/maintenance-deprecated-red?style=flat-square)
 
 <!-- tidy:crate-doc:start -->
+
+**Note: This crate is now deprecated in favor of the pattern that is [recommended in the cargo-llvm-cov documentation](https://github.com/taiki-e/cargo-llvm-cov?tab=readme-ov-file#exclude-code-from-coverage).**
+
+> If you want to ignore all `#[test]`-related code, you can use module-level `#[coverage(off)]` attribute:
+>
+> ```rust
+> #[cfg(test)]
+> #[cfg_attr(coverage, coverage(off))]
+> mod tests {
+>     // ...
+> }
+> ```
+>
+> cargo-llvm-cov excludes code contained in the directory named `tests` from the report by default, so you can also use it instead of `#[coverage(off)]` attribute.
+
+`#[coverage(off)]` attribute has been stabilized in [rust-lang/rust#130766](https://github.com/rust-lang/rust/pull/130766) (will be included in Rust 1.85).
+
+---
+
 Helper for <https://github.com/taiki-e/cargo-llvm-cov/issues/123>.
 
 **Note:** coverage-helper 0.2 supports `#[coverage(off)]`.
@@ -18,13 +38,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dev-dependencies]
-coverage-helper = "0.1"
-```
-
-And add this to your crate root (`lib.rs` or `main.rs`):
-
-```rust
-#![cfg_attr(all(coverage_nightly, test), feature(coverage_attribute))]
+coverage-helper = "0.2"
 ```
 
 ## Examples

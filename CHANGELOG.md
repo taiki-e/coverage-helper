@@ -12,6 +12,22 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+**Note: This crate is now deprecated in favor of the pattern that is [recommended in the cargo-llvm-cov documentation](https://github.com/taiki-e/cargo-llvm-cov?tab=readme-ov-file#exclude-code-from-coverage).**
+
+> If you want to ignore all `#[test]`-related code, you can use module-level `#[coverage(off)]` attribute:
+>
+> ```rust
+> #[cfg(test)]
+> #[cfg_attr(coverage, coverage(off))]
+> mod tests {
+>     // ...
+> }
+> ```
+>
+> cargo-llvm-cov excludes code contained in the directory named `tests` from the report by default, so you can also use it instead of `#[coverage(off)]` attribute.
+
+`#[coverage(off)]` attribute has been stabilized in [rust-lang/rust#130766](https://github.com/rust-lang/rust/pull/130766) (will be included in Rust 1.85).
+
 ## [0.2.2] - 2024-04-21
 
 - Update documentation to recommend using `#![cfg_attr(all(coverage_nightly, test), feature(coverage_attribute))]` instead of `#![cfg_attr(coverage_nightly, feature(coverage_attribute))]`.

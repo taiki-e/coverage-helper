@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-#![cfg_attr(all(coverage_nightly, test), feature(coverage_attribute))]
-#![allow(dead_code)]
+#![allow(dead_code, deprecated)]
 
 #[coverage_helper::test]
 fn a() {
