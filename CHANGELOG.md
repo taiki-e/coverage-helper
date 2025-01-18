@@ -12,6 +12,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Update documentation to reflect the revert of `coverage_attribute` stabilization.
+
 ## [0.2.3] - 2024-12-18
 
 **Note: This crate is now deprecated in favor of the pattern that is [recommended in the cargo-llvm-cov documentation](https://github.com/taiki-e/cargo-llvm-cov?tab=readme-ov-file#exclude-code-from-coverage).**

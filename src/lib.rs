@@ -8,16 +8,16 @@
 > If you want to ignore all `#[test]`-related code, you can use module-level `#[coverage(off)]` attribute:
 >
 > ```rust
+> #![cfg_attr(coverage_nightly, feature(coverage_attribute))]
+>
 > #[cfg(test)]
-> #[cfg_attr(coverage, coverage(off))]
+> #[cfg_attr(coverage_nightly, coverage(off))]
 > mod tests {
 >     // ...
 > }
 > ```
 >
 > cargo-llvm-cov excludes code contained in the directory named `tests` from the report by default, so you can also use it instead of `#[coverage(off)]` attribute.
-
-`#[coverage(off)]` attribute has been stabilized in [rust-lang/rust#130766](https://github.com/rust-lang/rust/pull/130766) (will be included in Rust 1.85).
 
 ---
 

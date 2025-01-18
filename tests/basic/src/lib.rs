@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
+#![cfg_attr(coverage_nightly, feature(coverage_attribute))]
 #![allow(dead_code, deprecated)]
 
 #[coverage_helper::test]
